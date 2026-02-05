@@ -132,12 +132,23 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function displayCharacterName(character, position) {
+    let nameTagWrapper = document.getElementById("character-name-wrapper");
+
+    if (!nameTagWrapper) {
+      nameTagWrapper = document.createElement("div");
+      nameTagWrapper.id = "character-name-wrapper";
+      nameTagWrapper.style.position = "absolute";
+      nameTagWrapper.style.left = "50%";
+      nameTagWrapper.style.transform = "translateX(-50%)";
+      document.body.appendChild(nameTagWrapper);
+    }
+
     let nameTag = document.getElementById("character-name-tag");
 
     if (!nameTag) {
       nameTag = document.createElement("div");
       nameTag.id = "character-name-tag";
-      document.body.appendChild(nameTag);
+      nameTagWrapper.appendChild(nameTag);
     }
 
     if (character) {
@@ -145,14 +156,11 @@ document.addEventListener("DOMContentLoaded", () => {
       nameTag.style.display = "block";
 
       if (position === "left") {
-        nameTag.style.left = "10%";
-        nameTag.style.top = "calc(70% - 50px)"; // Above the dialogue box
+        nameTag.style.transform = "translateX(-30vmin)";
       } else if (position === "right") {
-        nameTag.style.left = "70%";
-        nameTag.style.top = "calc(70% - 50px)"; // Above the dialogue box
+        nameTag.style.transform = "translateX(30vmin)";
       } else {
-        nameTag.style.left = "10%"; // Left rule of thirds for center position
-        nameTag.style.top = "calc(70% - 50px)"; // Above the dialogue box
+        nameTag.style.transform = "translateX(-30vmin)";
       }
 
       const defaultColors = storyVariables.constants?.defaultColors; // Access defaultColors correctly
@@ -171,11 +179,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function displayChoices(options, processEntry, currentIndexRef) {
     choices.innerHTML = "";
-    options.forEach((option) => {
+    options.forEach((option, index) => {
       const button = document.createElement("button");
       button.textContent = option.text;
       button.classList.add("choice");
-      button.style.backgroundImage = `linear-gradient(60deg, ${dialogueText.parentElement.style.borderColor}, #ccc, ${dialogueText.parentElement.style.borderColor})`; // Match gradient to dialogue box border
+      button.style.backgroundImage = `linear-gradient(60deg, #fff, #fff, ${dialogueText.parentElement.style.borderColor})`; // Match gradient to dialogue box border
       button.addEventListener("click", () => {
         if (option.effects) {
           applyEffects(option.effects);
@@ -188,6 +196,11 @@ document.addEventListener("DOMContentLoaded", () => {
         processEntry();
       });
       choices.appendChild(button);
+
+      // Apply the 'show' class with a staggered delay
+      setTimeout(() => {
+        button.classList.add("show");
+      }, index * 100); // 0.1 second delay between each choice
     });
   }
 
