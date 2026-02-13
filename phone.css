@@ -1,0 +1,674 @@
+/* Color Variables */
+:root {
+  --primary-color: #d251b6;
+  --secondary-color: #4a90e2;
+  --accent-color: #eeeadb;
+  --bezel-color: #333;
+  --outline-color: #000;
+  --text-color: #fff;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+strong,
+span,
+a,
+label {
+  color: var(--text-color);
+  text-shadow:
+    var(--outline-color) 1px 1px 0,
+    var(--outline-color) -1px -1px 0,
+    var(--outline-color) -1px 1px 0,
+    var(--outline-color) 1px -1px 0;
+}
+
+#phone-container {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100vh * 0.5); /* Maintain a realistic phone aspect ratio */
+  height: 100vh; /* Maximum vertical space with some margin */
+  background: #000;
+  border-radius: 30px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#phone-bezel {
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--bezel-color) 80%, white 20%),
+    color-mix(in srgb, var(--bezel-color) 80%, black 20%)
+  );
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+}
+
+#phone-screen {
+  width: 95%;
+  height: 85%;
+  margin-top: 5%;
+  align-self: flex-start;
+  background: #111;
+  border-radius: 15px 15px 0 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  z-index: -10;
+}
+
+/* Theme-specific styles */
+body.app-theme-unmasked-royal #phone-screen {
+  background-color: var(--primary-color);
+}
+
+body.app-theme-cotton-candy #phone-screen {
+  background-color: var(--primary-color);
+  background-image:
+    radial-gradient(var(--secondary-color) 12.5%, transparent 12.5%),
+    radial-gradient(var(--secondary-color) 12.5%, transparent 12.5%);
+  background-size: 20px 20px;
+  background-position:
+    0 0,
+    10px 10px;
+}
+
+body.app-theme-sakura #phone-screen {
+  background-color: var(--primary-color);
+  background-image:
+    radial-gradient(var(--secondary-color) 15%, transparent 15%),
+    radial-gradient(var(--secondary-color) 15%, transparent 15%);
+  background-size: 30px 30px;
+  background-position:
+    0 0,
+    15px 15px;
+}
+
+.p5r,
+.ctn-cdy,
+.ska {
+  display: none;
+}
+
+body.app-theme-unmasked-royal .p5r {
+  display: flex;
+}
+
+body.app-theme-cotton-candy .ctn-cdy {
+  display: flex;
+}
+
+body.app-theme-sakura .ska {
+  display: flex;
+}
+
+.ska {
+  filter: drop-shadow(15px 15px 15px white);
+}
+
+#phone-interface {
+  position: fixed;
+  bottom: 0;
+  width: 95%;
+  height: 10%;
+  display: flex;
+  justify-content: space-around; /* Ensure equal spacing */
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 100;
+  bottom: 2.5%;
+  border-radius: 0 0 10px 10px; /* Rounded corners for the bottom buttons */
+  overflow: hidden;
+}
+
+.phone-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 5vh;
+  cursor: pointer;
+  background-color: #666;
+  flex: 1; /* Ensure buttons take equal width */
+  text-align: center; /* Center text inside buttons */
+  padding: 0;
+  transition: background-color 0.1s ease;
+}
+
+.phone-button:hover {
+  background-color: #888;
+}
+
+.ios-switch {
+  position: relative;
+  display: inline-block;
+  width: 100px; /* Increased width for a larger slider */
+  height: 50px; /* Increased height for a larger slider */
+}
+
+.ios-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #888;
+  transition: 0.2s;
+  border-radius: 50px; /* Adjusted to match the new size */
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 40px; /* Larger knob */
+  width: 40px; /* Larger knob */
+  left: 5px; /* Adjusted spacing */
+  bottom: 5px; /* Adjusted spacing */
+  background-color: white;
+  transition: 0.2s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #4caf50;
+}
+
+input:checked + .slider:before {
+  transform: translateX(25px); /* Adjusted to match the new width */
+}
+
+#texting-app,
+#map-app,
+#settings-app,
+#credits-app {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
+  width: 93%;
+  padding-left: 3.5%;
+  padding-right: 3.5%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.setting {
+  z-index: 100;
+  display: flex;
+  align-items: center;
+}
+
+.setting label {
+  font-size: 3vh; /* Larger labels for settings */
+  font-weight: bold;
+}
+
+.sex-toggle {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.sex-option {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center; /* Ensure perfect horizontal centering */
+  width: 20vh; /* Increased size */
+  height: 20vh; /* Increased size */
+  font-size: 12vh; /* Make icons much larger */
+  /* background-color: #f0f0f0; */
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.1s;
+  padding-left: 7%; /* Slight adjustment to fix left offset */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 4px solid #888;
+  filter: saturate(0.25);
+}
+
+.sex-option.male {
+  background-image: linear-gradient(45deg, #88f, #888);
+}
+
+.sex-option.female {
+  background-image: linear-gradient(45deg, #f88, #888);
+}
+
+.sex-option:hover {
+  transform: scale(1.01);
+}
+
+.sex-option.selected {
+  color: white;
+  border-color: #4caf50;
+  filter: saturate(1);
+}
+
+.sex-option img {
+  width: 70%; /* Scale SVG icons to fit nicely */
+  height: 70%;
+}
+
+.theme-setting {
+  display: flex;
+  flex-wrap: nowrap;
+  margin-top: 1vh;
+}
+
+#theme {
+  min-width: 85%;
+  max-width: 100%;
+}
+
+select {
+  appearance: none; /* Remove default dropdown styling */
+  -webkit-appearance: none; /* For Safari */
+  -moz-appearance: none; /* For Firefox */
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 25px; /* Pill shape */
+  padding: 10px 20px;
+  font-size: 2vh;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition:
+    background-color 0.3s,
+    box-shadow 0.3s;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 1.5em;
+  margin-left: 1vh;
+}
+
+select:hover {
+  background-color: #e0e0e0;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+select:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(100, 149, 237, 0.5); /* Focus ring */
+}
+
+#credits-app {
+  background-image: linear-gradient(30deg, #822 25%, #222 65%);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5vh;
+  gap: 15px;
+  text-align: center;
+  background-size: 200% 200%;
+  background-position: center top;
+  transition:
+    background-position 2s cubic-bezier(0.25, 1, 0.5, 1),
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+#credits-app.show {
+  background-position: center center;
+}
+
+#credits-app.show h1,
+h2,
+p {
+  color: #fff !important;
+  text-shadow: none !important;
+}
+
+#credits-app h2 {
+  font-size: 3vh;
+  margin-bottom: 10px;
+}
+
+#credits-app p {
+  opacity: 0;
+  transform: translateY(20px);
+  margin: 5px 0;
+}
+
+#credits-app p strong {
+  font-weight: bold;
+}
+
+#credits-app p.show {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+#close-credits {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #ff5555;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 2vh;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#view-credits {
+  background: linear-gradient(45deg, #4a90e2, #9013fe);
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-size: 2vh;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  transition:
+    transform 0.1s,
+    box-shadow 0.1s;
+  margin: 0 auto; /* Center the button */
+  display: block;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+#view-credits:hover {
+  transform: scale(1.02);
+}
+
+.credits-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  align-self: center;
+  justify-self: center;
+  margin-top: 1vh;
+}
+
+#map-app {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  padding: 0;
+}
+
+.map-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.map-content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+
+/* Mobile Specific Styles */
+@media screen and (max-width: 600px) {
+  .phone-button {
+    transition: none !important;
+  }
+  .phone-button:hover {
+    background-color: #666 !important;
+  }
+  #phone-interface {
+    width: 100%;
+    border-radius: 0;
+    bottom: 0;
+  }
+  #phone-container {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
+  #phone-bezel {
+    width: 100%;
+    height: 100%;
+    background-image: none;
+    display: block;
+    border-radius: 0;
+  }
+  #phone-screen {
+    position: relative;
+    width: 90%;
+    height: 85.5vh;
+    padding: 5%;
+    border-radius: 0;
+    top: 0;
+    bottom: 10%;
+    margin: 0;
+  }
+  .phone-app {
+    width: 100% !important;
+    overflow: visible !important;
+    position: relative;
+  }
+  .sex-toggle {
+    gap: 10px;
+  }
+  .sex-option {
+    width: 18.5vh; /* Increased size */
+    height: 18.5vh; /* Increased size */
+  }
+  .sex-option:hover {
+    transform: scale(1);
+  }
+  select:hover {
+    background-color: #f0f0f0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  #view-credits:hover {
+    transform: scale(1);
+  }
+  #map-app,
+  #credits-app {
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 90vh;
+    padding: 0;
+  }
+  #credits-app h2 {
+    font-size: 6vh;
+  }
+  #credits-app p {
+    font-size: 4vh;
+  }
+  #settings-ska-thick {
+    bottom: -14% !important;
+  }
+}
+
+#texting-list-container {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  width: 95%;
+  height: 90vh; /* Adjust to take up most of the screen */
+  padding: 10px;
+  margin: auto; /* Center the container horizontally and vertically */
+}
+
+.text-chain-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 95%;
+  padding: 5px;
+  transition: background-color 0.1s;
+  cursor: pointer;
+  height: 7vh;
+  border-radius: 16px;
+}
+
+.text-chain-wrapper:hover {
+  background-color: #f0f0f0;
+}
+
+.text-chain-button {
+  flex: 1; /* Allow the button to take up available space */
+  padding: 10px;
+  background-color: transparent;
+  border: none;
+  text-align: left;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.text-chain-button:hover {
+  background-color: #f0f0f0;
+}
+
+.text-chain-name-wrapper * {
+  display: inline-block;
+  width: fit-content;
+}
+
+#texting-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Add spacing between each button container */
+}
+
+#texting-list-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+#texting-list-container::-webkit-scrollbar-track {
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+#texting-list-container::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 8px;
+}
+
+#texting-list-container::-webkit-scrollbar-thumb:hover {
+  background: #bbb;
+}
+
+body.app-theme-unmasked-royal .text-chain-wrapper:hover {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.text-chain-avatar-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 !important;
+  padding: 0;
+  width: 15%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 4;
+}
+
+.text-chain-avatar-bg-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+}
+
+.text-chain-name-wrapper {
+  height: 100%;
+  display: flex;
+  min-width: 30%;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 16px;
+  width: fit-content;
+  z-index: 3;
+}
+
+body.app-theme-unmasked-royal .text-chain-avatar-wrapper {
+  background-image: url("assets/ui/p5r_text_avatar.svg");
+  background-size: 100% 100%;
+}
+
+body.app-theme-unmasked-royal .text-chain-avatar-bg-wrapper {
+  background-image: url("assets/ui/p5r_avatar_background.svg");
+  background-size: 90% 80%;
+  background-repeat: no-repeat;
+  background-position: top right;
+}
+
+body.app-theme-unmasked-royal .text-chain-name-wrapper {
+  background: url("assets/ui/p5r_text.svg") no-repeat;
+  background-size: 100% 100%;
+  background-position: left center;
+}
+
+body.app-theme-cotton-candy .text-chain-avatar-wrapper {
+  background-image: linear-gradient(-45deg, black, #888);
+  border-radius: 50%;
+  width: 6vh;
+  height: 6vh;
+  overflow: hidden;
+}
+
+body.app-theme-cotton-candy .text-chain-avatar-bg-wrapper {
+  background-color: #4a90e2;
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+}
+
+body.app-theme-cotton-candy .text-chain-name-wrapper {
+  background-color: #cdb1d6;
+  border-radius: 0 12px 12px 0;
+  height: 6vh;
+  margin-left: -3vh;
+  width: 83.5%;
+}
+
+body.app-theme-cotton-candy .text-chain-name-wrapper strong {
+  margin-left: 3vh;
+}
+
+.text-chain-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

@@ -1,0 +1,50 @@
+{
+  "metadata": {
+    "chainName": "Hot Stuff",
+    "primaryCharacter": "Evan",
+    "characters": ["Evan"]
+  },
+  "constants": {
+    "paths": {
+      "predefinedConstants": "/games/tokimeki/const/default.json"
+    }
+  },
+  "story": [
+    {
+      "character": "Evan",
+      "dialogue": "Hey kitten. This is the texting system."
+    },
+    {
+      "responses": [
+        {
+          "text": "Hey handsome~",
+          "effects": { "affection": { "Evan": 10 } },
+          "toast": "{{char}} will remember that."
+        },
+        {
+          "text": "Eww",
+          "effects": { "affection": { "Evan": -5 } },
+          "toast": "{{char}} will remember that."
+        }
+      ]
+    },
+    {
+      "branch": {
+        "condition": "affection.Evan > 5",
+        "story": [
+          {
+            "character": "Evan",
+            "dialogue": "Damn girl, you got me blushin'"
+          }
+        ]
+      }
+    },
+    {
+      "dialogue": "This is the end of the texting demo.",
+      "unlocks": {
+        "texts": ["lmaoplzrefresh"],
+        "characters": ["Elle"]
+      }
+    }
+  ]
+}

@@ -1,8 +1,15 @@
 {
   "constants": {
     "defaultColors": {
-      "Sylveon": "#F888",
-      "Nagatoro": "#88F8"
+      "Ember": "#83070788",
+      "Elle": "#1d6b7788",
+      "Jiyuu": "#c6d6ba88",
+      "Jorse": "#fda07688",
+      "Luke": "#8924bf88",
+      "Cubi": "#ff892a88",
+      "Jellyfish": "##ff310088",
+      "Goat": "#4f686488",
+      "Gigachad": "#6ED67188"
     }
   }
 }

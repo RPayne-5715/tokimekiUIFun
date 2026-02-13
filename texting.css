@@ -1,0 +1,12 @@
+#texting-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
+  width: 93%;
+  padding-left: 3.5%;
+  padding-right: 3.5%;
+  height: 100%;
+  overflow: hidden;
+}
