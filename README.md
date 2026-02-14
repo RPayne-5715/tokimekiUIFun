@@ -1,1 +1,1 @@
-https://rpayne5715.github.io/tokimekiUIFun/
+https://rpayne5715.github.io/tokimekiUIFun/index.html
